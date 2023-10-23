@@ -1,0 +1,78 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>Testing Query Selectors</title>
+        <style>
+            td, th, table
+            {
+                border: 1px solid black;
+                padding: 5px;
+            }
+            table
+            {
+                border-collapse: collapse;
+            }
+        </style>
+        <script>
+            let colorboxes;
+            let rgbboxes;
+            let exampleboxes;
+
+            function initialize()
+            {
+                let genButton = document.querySelector(".button");
+
+                colorboxes = document.querySelectorAll(".color");
+                rgbboxes = document.querySelectorAll(".rgb");
+                exampleboxes = document.querySelectorAll(".example");
+
+                genButton.onclick = function() {getColors()};
+            }
+            function randInt(lower, upper)
+            {
+                return parseInt(Math.random() * (upper - lower + 1) + 1);
+            }
+            function getColors()
+            {
+                for(let i = 0; i < 3; i++)
+                {
+                    let r = randInt(0, 255);
+                    let g = randInt(0, 255);
+                    let b = randInt(0, 255);
+                    colorboxes[i].style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
+                    rgbboxes[i].innerHTML = `${r}, ${g}, ${b}`;
+                    exampleboxes[i].style.color = `rgb(${r}, ${g}, ${b})`;
+                }
+            }
+        </script>
+    </head>
+    <body onload="initialize();">
+        <table class="maintable">
+            <tr>
+                <th colspan="3">Your color palette</th>
+            </tr>
+            <tr>
+                <td>Color</td>
+                <td>RGB Values</td>
+                <td>Example</td>
+            </tr>
+            <tr>
+                <td class="color"></td>
+                <td class="rgb">255, 255, 255</td>
+                <td class="example">Lorem Ipsum</td>
+            </tr>
+            <tr>
+                <td class="color"></td>
+                <td class="rgb">255, 255, 255</td>
+                <td class="example">Lorem Ipsum</td>
+            </tr>
+            <tr>
+                <td class="color"></td>
+                <td class="rgb">255, 255, 255</td>
+                <td class="example">Lorem Ipsum</td>
+            </tr>
+        </table>
+
+        <button class="button">Generate Color Palette!</button>
+    </body>
+</html>
